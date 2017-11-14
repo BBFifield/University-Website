@@ -1,0 +1,25 @@
+@CHARSET "ISO-8859-1";
+
+#all {
+	min-height: 1000px;
+	width: 960px;
+	margin: 0px auto 0px auto;
+	background-color: #dfe1ff;
+}
+
+#imgdiv {
+	width:40%;
+}
+
+.link {
+	margin-top: 25px;
+}
+
+#catalogueTitle {
+	margin: 30px 0% 10px 0%;
+	text-align: center;
+}
+
+th, td{	
+	padding: 30px;
+}
