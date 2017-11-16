@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<link type = "text/css" rel = "stylesheet" href= "courseStyles/homeStyle.css">
+	<link type = "text/css" rel = "stylesheet" href= "courseStyles/homeStyleDesktop.css" media = "screen and (min-width:1301px)">
+	<link type = "text/css" rel = "stylesheet" href= "courseStyles/homeStyleTablet.css" media = "screen and (min-width:1001px) and (max-width:1300px)">
+	<link type = "text/css" rel = "stylesheet" href= "courseStyles/homeStyleMobile.css" media = "screen and (max-width:1000px)">
+	<script src = "indexFunctions.js"></script>
+	<meta charset="ISO-8859-1">
+	<title>Home Page</title>
+</head>
+<body>
+	<div id = "whole">
+		<div id = "headerContainer">
+			<div id = "header">
+				<h1 id = "headerTitle">
+					WELCOME TO MEMORIAL UNIVERSITY
+				</h1>
+				<div id = "logoContainer">
+					<img id = "headerLogo" src = "images/munLogo.png">
+				</div>
+				<div id = "contactInfo">
+					<p>Address: St. John's, NL A1C 5S7</p>
+					<p>Phone: 709-864-8000</p>
+				</div>
+			</div>
+		</div>
+		<div id = navBar>
+			<a href = "index.html">Main</a>
+			<a href = "stJohns/stJohnsCourses.html">Campus</a>
+			<a href = "student.html">Student</a>
+			<a href = "stJohns/previousCourses.html">Previous Courses</a>
+		</div>
+		<div id = "events">
+			<h1 class = "subTitle">Events</h1>
+			<h3 class = "addEvent"> Add Event </h3>
+			<form id = "eventForm">
+				<select id = "day" name = "Day">
+		    	  <option value = "Monday"> Monday </option>
+		    	  <option value = "Tuesday"> Tuesday </option>
+		    	  <option value = "Wednesday"> Wednesday </option>
+		    	  <option value = "Thursday"> Thursday </option> 
+		    	  <option value = "Friday"> Friday </option>
+		    	  <option value = "Saturday"> Saturday </option>
+		    	  <option value = "Sunday"> Sunday </option> 
+		    	</select>
+				<input type = "text" id = "event" name = "fullname" placeholder = "Event">
+				<input type = "submit" id = "submission" value = "Add Event" onclick = "createEEvent()">
+			</form>
+			<ul id = "eventList">
+				
+			</ul>
+		</div>
+		<div id = "campuses">
+			<h1 class = "subTitle">Our Campuses</h1>
+			<div class = "campusRow">
+				<a id = "stJohnsLink" class = "campusLinkLeft" href="stJohns/stJohns.html">St. John's Campus</a>
+				<a class = "imgContainer" href = "stJohns/images/campus.jpg" target = _blank>
+					<img class = "campusRowImg" src = "images/towersmall.jpg">
+				</a>
+			</div>
+			<input id = "editStJohns" type = "submit" value = "Edit" name = "editStJohns" onclick = "editStJohns(document.getElementById('stJohnsLink'))">
+			
+			
+			<div class = "campusRow">
+				<a class = "imgContainer" href = "grenfell/images/campus.jpg" target = "_blank">
+					<img class = "campusRowImg" src = "images/grenfellsmall.jpg">
+				</a>
+				<a id = "grenfellLink" class = "campusLinkRight" href="grenfell/grenfell.html">Grenfell Campus</a> 
+			</div>
+			<input id = "editGrenfell" type = "submit" value = "Edit" name = "editGrenfell" onclick = "editGrenfell(document.getElementById('grenfellLink'))">
+		
+			<div class = "campusRow">
+				<a id = "marineLink" class = "campusLinkLeft" href="marine/marine.html">Marine Institute</a>
+				<a class = "imgContainer" href = "marine/images/campus.jpg" target = "_blank">
+					<img class = "campusRowImg" src = "images/marinesmall.jpg">
+				</a>
+			</div>
+			<input id = "editMarine" type = "submit" value = "Edit" name = "editMarine" onclick = "editMarine(document.getElementById('marineLink'))">
+			
+		</div>
+	</div>
+	<div id = "footer">
+			<p id = "footerInfo">18, 413 students total<br>Copyright @ 2017 Memorial University of Newfoundland.</p>
+	</div>
+</body>
+</html>

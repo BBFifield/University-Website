@@ -1,0 +1,116 @@
+@CHARSET "ISO-8859-1";
+
+html {
+	height: 100%
+}
+
+body {
+	background-color: #cdcdcd;
+	font-family: "verdana", Times;
+	height: 100%;
+	margin:0px;
+}
+
+#whole {
+	height: 100%;
+}
+
+#headerContainer {
+	background-color:rgb(130,36,51);
+	color: white;
+	text-align: center;
+}
+
+#headerTitle {
+	padding: 20px 0px 20px 0px;
+	margin: 0px;
+}
+
+#logoContainer {
+	display: inline-block;
+}
+
+#contactInfo {
+	display: inline-block;
+	vertical-align: top;
+}
+
+#navBar {
+	background-color: #c0c0c0;
+	text-align: center;
+	padding: 20px;
+}
+
+#navBar a {
+	text-decoration: none;
+	color: black;
+	padding: 20px 6% 20px 6%;
+}
+
+#navBar a:hover {
+	background-color: white;
+}
+
+.subTitle {
+	text-align: center;
+	font-size: 3em;
+}
+
+.addEvent {
+	text-align: center;
+	font-size: 2em;
+}
+
+#events {
+	border-radius: 10px;
+}
+
+#eventForm {
+	text-align: center;
+}
+
+#eventList {
+	font-size: 1.5em;
+}
+
+select {
+	margin: 0px 0px 5px 0px;
+}
+
+input[type="text"] {
+	text-align: center;
+	width: 93%;
+	margin: 5px 0px 5px 0px;
+}
+
+input[type="submit"] {
+	width: 95%;
+	margin: 5px 0px 5px 0px;
+}
+
+.campusRow {
+	border-radius: 10px;
+}
+
+.campusLinkLeft {
+	display: inline-block;
+	text-decoration: none;
+	color: black;
+}
+
+.campusLinkRight {
+	display: inline-block;
+	text-decoration: none;
+	color: black;
+}
+
+#footer {
+	background-color: #333333;
+	text-align: center;
+	top: 100%;
+}
+
+#footerInfo {
+	margin: 0px;
+	color: white;
+}
