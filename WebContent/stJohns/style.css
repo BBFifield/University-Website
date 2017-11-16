@@ -1,0 +1,89 @@
+@CHARSET "UTF-8";
+body {
+	margin: 0;
+	padding: 0;
+}
+
+a {
+	color: white;
+	text-decoration: none;
+}
+
+a.small {
+	color: black;
+}
+
+a.small:hover {
+	font-weight: bold;
+}
+
+div.university {
+	background-color: rgb(130,36,51);
+	text-align: center;
+	font-size : 3em;
+	font-weight: bold;
+	padding: 20px;
+	margin: 0px;
+	border-top: 5px solid black;
+	border-bottom: 5px solid black;
+}
+h1.campus {
+	text-align: center;
+	background-color: rgb(244,244,244);
+	padding: 10px;
+	margin: 0px;
+}
+
+h2.title {
+	color: white;
+	background-color: rgb(130,36,51);
+	padding: 10px 40px 10px 40px;
+}
+
+img.main {
+	display: block;
+	padding: 20px;
+	margin: auto;
+}
+
+div.courses {
+	position: relative;
+	display: inline-block;
+	left: 50%;
+	margin: 10px 10px 10px 130px;
+	vertical-align: top;
+	text-align: center;
+	background-color: rgb(244,244,244);
+	border: 3px solid rgb(130,36,51);
+	border-radius: 10px;
+	font-size: 1.1em;
+	width: 300px;
+}
+
+div.map {
+	position: relative;
+	display: inline-block;
+	left: 50%;
+	margin: 10px 10px 10px 130px;
+	vertical-align: top;
+	text-align: center;
+	background-color: rgb(244,244,244);
+	border: 3px solid rgb(130,36,51);
+	border-radius: 10px;
+	font-size: 1.1em;
+	width: 300px;
+}
+
+div.buildings {
+	position: relative;
+	display: inline-block;
+	left: 50%;
+	margin: 10px 10px 10px -600px;
+	vertical-align: top;
+	text-align: center;
+	background-color: rgb(244,244,244);
+	border: 3px solid rgb(130,36,51);
+	border-radius: 10px;
+	font-size: 1.1em;
+	width: 300px;
+}

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link type = "text/css" rel = "stylesheet" href= "../courseStyles/courses.css"/>
+<link type = "text/css" rel = "stylesheet" href= "marineCoursesStyle.css"/>
+<link type = "text/css" rel = "stylesheet" href= "../courseStyles/coursesDesktop.css" media = "screen and (min-width: 1301px)"/>
+<link type = "text/css" rel = "stylesheet" href= "../courseStyles/coursesTablet.css" media = "screen and (min-width: 1001px) and (max-width: 1300px)"/>
+<link type = "text/css" rel = "stylesheet" href= "../courseStyles/coursesMobile.css" media = "screen and (max-width: 1000px)"/>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+<script src = "../courseFunctions.js"></script>
+</head>
+<body class = "stj">
+	<div id = "all">
+		<div class= "welcome">
+ 		<div id="imgdiv">
+ 			<img id = "img" src =  "../images/marinesmall.jpg">
+ 			</div>
+ 			<a href="marine.html" class= "link"> Marine Institute</a>
+ 		</div>
+ 		<h2 id = "catalogueTitle"> Course Catalogue </h2>
+		<div id= "coursetable">
+			<table id = "cross">
+	 			<tr class = "topRow">
+	   				<th>Course Name</th>
+	   				<th> Course Number </th>
+	   				<th> Class Rooms </th>
+	   				<th> Action </th>
+	 			</tr>
+	 		</table>
+    	</div>
+    	
+    	<h3 id = "addCourseTitle">Add Course</h3>
+    	<div id= "addCourse" >
+	    	<input type = "text" name = "fullname" id = "full" placeholder = "Course Name "> 
+	    	<input type = "text" name = "fullname" id = "ful" placeholder = "Course Number "> 
+	    	<input type = "text" name = "fullname" id = "fll" placeholder = "Room "> 
+	     	<input class = "place" type = "button" value = "Add" onclick = "createTable()"> 
+	    </div>
+	    <h3 id = registerTitle>Register</h3>
+	    <div id = "register">
+   			<select id = "courseDropDown" onchange = "updateNumberDropDown();">
+   			</select>
+   			
+    		<select id = "numbers" onchange = "updateRoomDropDown()">	
+   			</select>
+	    	
+	    	<select id = "rooms">
+	    	</select>
+	    	
+        	<input class = "place" type = "button" value = "Register" >
+	    </div>
+	    
+	    <h3 id = "previousCourses">
+	    	<a id = "previousCoursesLink" href = "previousCourses.html">Previous Courses</a>
+	    </h3>
+	</div>
+</body>
+</html>

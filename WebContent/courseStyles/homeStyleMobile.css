@@ -1,0 +1,113 @@
+@CHARSET "ISO-8859-1";
+
+body {
+	font-family: "verdana", Times;
+	font-size: 1.3em;
+}
+
+#whole {
+	background-color: #ffffff;
+	min-height: 2500px;
+	min-width: 775px;
+}
+
+#headerContainer {
+	background-color:rgb(130,36,51);
+	color: white;
+	border: 5px solid black;
+	border-radius: 3px;
+}
+
+#header {
+	max-width: 1000px; 
+	margin: auto;
+	text-align: center;
+}
+
+#logoContainer {
+	width: 50%
+}
+
+#headerLogo {
+	margin: 0px 30% 20px 0%;
+}
+
+#contactInfo {
+	font-size: 1.3em;
+	width: 47%;
+}
+
+#navBar a {
+	font-size: 1.3em;
+	padding: 20px 3% 20px 3%;
+}
+
+#navBar a:hover {
+	background-color: #ffd900;
+}
+
+#events {
+	background-color: #dadada;
+	width: 90%;
+	margin: 100px auto 0px auto;
+	border: 5px solid #ffca95;
+}
+
+select {
+	font-size: 1.6em;
+	height: 70px;
+}
+
+input[type="text"] {
+	font-size: 1.4em;
+	height: 70px;
+}
+
+input[type="submit"] {
+	font-size: 1.4em;
+	height: 70px;
+}
+
+#eventList {
+	font-size: 1.2em;
+	margin-left: 3%;
+}
+
+#campuses {
+	width: 90%;
+	text-align: center;
+	margin: 100px auto auto auto;
+}
+
+.campusRow {
+	background-color: #c4ffc4;
+	margin-top: 50px;
+}
+
+.campusLinkLeft {
+	font-weight: bold;
+	font-size: 1.4em;
+	width: 40%;
+	vertical-align: top;
+	margin: 75px 0% 75px 0%;
+}
+
+.campusLinkRight {
+	font-weight: bold;
+	font-size: 1.4em;
+	width: 40%;
+	vertical-align: top;
+	margin: 75px 0% 75px 0%;
+}
+
+.imgContainer {
+	display: inline-block;
+	width: 40%;
+	margin-top: 17px;
+}
+
+#footer {
+	font-size: 2em;
+	background-color: #333333;
+	padding: 20px;
+}

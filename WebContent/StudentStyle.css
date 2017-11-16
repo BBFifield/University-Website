@@ -1,0 +1,37 @@
+#all {
+	
+  background-color: gray;
+  min-height: 1000px;
+  width: 960px;
+  margin: 0px auto 0px auto;
+	
+}
+
+
+div.welcome {
+    background-color: rgb(130,36,51);
+    text-align: center;
+	border-top: 5px solid black;
+	border-bottom: 5px solid black;
+}
+
+h1.title {
+    text-align: center;
+	padding: 10px;
+	margin: 0px;
+}
+
+img.logo {
+    float: left;
+}
+
+
+
+th, td, tr {
+    padding: 30px;
+    border: 1px solid black;
+}
+
+#registerBox {
+    text-align: center;
+}
