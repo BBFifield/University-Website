@@ -1,8 +1,9 @@
 <html>
         <head>
                 <link type="text/css" rel = "stylesheet" href= "StudentStyle.css">
-                <title>Student Page</title>
+                <title> {{ studentName }} 's Student Page</title>
                 <script src = "studentFunctions.js"> </script> 
+                <script src= "student.js"></script>
 
                 <style>
                 body {
@@ -18,7 +19,7 @@
                 
                 <h1 class="title" align="center">Student Page</h1>
 
-                <h2 align="center">Class Schedule</h2>
+                <h2 align="center"> {{ studentName }} 'sClass Schedule</h2>
 				<a href = "index.html">
 					 <img src = "images/munLogo.png"> 
 				</a>
@@ -28,9 +29,9 @@
                 
              <table id ="enrolled" align="center">
                 <tr id ="titleRow">
-                        <th>Course</th>
-                        <th>Course Number</th>
-                        <th>Room</th>
+                        <th>{{ course }}</th>
+                        <th>{{ courseNumber }}</th>
+                        <th>{{ room }}</th>
                 </tr>
 
             </table>
@@ -39,7 +40,7 @@
                     <button onclick="addCourse()">Register</button>
                 
 
-                  <input type = "text" id = "courseDropDown" placeholder= " Course Name">
+                <input type = "text" id = "courseDropDown" placeholder= " Course Name">
                 <input type = "text" id = "numbers" placeholder = "Course Number">
                 <input type = "text" id = "rooms" placeholder = "Room">
             </div>
