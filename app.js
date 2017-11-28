@@ -33,3 +33,33 @@ app.get('/users', user.list);
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));
 });
+
+
+app.get('/', routes.index);
+
+app.get('/stJohns/StJohnsCourses', function(req, res) {
+	res.render('StJohnsCourses.hjs', { title: "St. John's"});
+});
+
+app.get('/marine/marineCourses', function(req, res) {
+	res.render('marineCourses.hjs', { title: "Marine Insitute"});
+});
+
+app.get('/grenfell/grenfellCourses', function(req, res) {
+	res.render('grenfellCourses.hjs', { title: "Grenfell Campus"});
+});
+
+app.get('/stJohns/previousCourses', function(req, res) {
+	res.render('previousCourses.hjs', { title: "St. John's"});
+});
+
+app.get('/marine/previousCourses', function(req, res) {
+	res.render('previousCourses.hjs', { title: "Marine Insitute"});
+});
+
+app.get('/grenfell/previousCourses', function(req, res) {
+	res.render('previousCourses.hjs', { title: "Grenfell Campus"});
+});
+
+
+

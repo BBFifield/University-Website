@@ -1,9 +1,11 @@
 /**
  * GET Student page 
+
  */
 
-router.get('/', function (req, res, next) {
+var express = require('express');
+var router = express.Router();
+var path = require('path');
+var fs = require("fs");
 
-res.render('student', {studentName: 'Justin'});
 
-});
