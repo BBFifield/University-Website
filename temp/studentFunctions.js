@@ -1,13 +1,22 @@
 var courseCheck;
+var table = document.getElementById("enrolled");
+var tableHTML = document.getElementById("enrolled").innerHTML;
+var headerHTML = document.getElementById("titleRow").innerHTML;
 
+ window.onload = init2("Student1");
+ var server = "http://localhost:3337/registerArray.json";
 
- window.onload = init2;
-
-          
+ function sendregisterArray(jsonarray) {
+	var xmlhttp = new XMLHttpRequest();
+	xmlhttp.open("POST", server);
+	xmlhttp.setRequestHeader("cache-control", "no-cache");
+	xmlhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+	xmlhttp.send(JSON.stringify(jsonarray));
+}
                   
 function addCourse() {
-
-    var registerArray = getregisterArray();
+	var student = document.getElementById("mySelect").value;
+    var registerArray = getCourseArray2(student);
     var course = {
     name: document.getElementById("courseDropDown").value,
     number: document.getElementById("numbers").value,
@@ -23,16 +32,14 @@ function addCourse() {
         alert("That course does not exist!");
     }
     else if(checkDuplicate(course)) {
-        alert("YOu've already registered for that course");
+        alert("You've already registered for that course");
     }
 
     else {
 
     registerArray.push(course);
-    localStorage.setItem("register", JSON.stringify(registerArray));
+    sendregisterArray(registerArray); // Changed from local storage 
 
-    
-    
     var row = enrolled.insertRow(1);
     
     var cell1 = row.insertCell(0);
@@ -44,9 +51,18 @@ function addCourse() {
     cell3.innerHTML = course.room;
 }
 }
+function changeTable(){
+	reloadTable();
+	init2(document.getElementById("mySelect").value);
+}
+	  
+function reloadTable() {
+	tableHTML = headerHTML;
+	table.innerHTML = tableHTML;
+	
+} 
 
 function createSchedule(course) {
-    var table = document.getElementById("enrolled");
     var row = document.createElement("tr");
     var cell1 = document.createElement("td");
     var cell2 = document.createElement("td");
@@ -62,24 +78,26 @@ function createSchedule(course) {
     table.appendChild(row);
 }
 
- function getcourseArray2() {
-     return JSON.parse(localStorage.getItem("course"));
- }
+ function getcourseArray2(student) { 
+	var student;
+    var url = server;
+    var request = new XMLHttpRequest();
+    request.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+            studentArray = JSON.parse(request.responseText);
+        }
+    };
+    request.open("GET", url, false);
+    request.send();
+    for(t = 0; t < studentArray.length; t++) {
+    	var courses = studentArray[t].courses; 
+    }
+    return courses;
+    }
 
- function getregisterArray() {
-	var registerArray = localStorage.getItem("register");
-	if(!registerArray) {
-		registerArray = [];
-		localStorage.setItem("register", JSON.stringify(registerArray));
-	}
-	else {
-		registerArray = JSON.parse(registerArray);
-	}
-	return registerArray; 
-}
                    
-function init2() {
-    var registerArray = getregisterArray();
+function init2(student) {
+    var registerArray = getCourseArray2(student);
      if (registerArray != null) {                    
         for (i = 0; i < registerArray.length; i++) {
             var course = registerArray[i];
@@ -108,7 +126,7 @@ function checkCourse(course) {
     }
 
 function checkDuplicate(course) {
-    var registerArray = getregisterArray();
+    var registerArray = getCourseArray2(document.getElementById("mySelect").value);
 
     for(i = 0; i < registerArray.length; i++) {
         if(registerArray[i].name == course.name && registerArray[i].number == course.number && registerArray[i].room == course.room) {

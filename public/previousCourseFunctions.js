@@ -1,5 +1,13 @@
 window.onload = init;
 
+function sendPreviousArray(jsonarray) {
+	var xmlhttp = new XMLHttpRequest();
+	xmlhttp.open("POST", "http://localhost:3337/previousArray.json");
+	xmlhttp.setRequestHeader("cache-control", "no-cache");
+	xmlhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+	xmlhttp.send(JSON.stringify(jsonarray));
+}
+
 function addPreviousCourseToDOM(key, courseObject) {
 	var courses = document.getElementById("cross");
 	var row = courses.insertRow(1);
@@ -21,14 +29,17 @@ function addPreviousCourseToDOM(key, courseObject) {
 }
 
 function getPreviousCrsArray() {
-	var previousCrsArray = localStorage.getItem("previous");
-	if(!previousCrsArray) {
-		previousCrsArray = [];
-		localStorage.setItem("previous", JSON.stringify(previousCrsArray));
-	}
-	else {
-		previousCrsArray = JSON.parse(previousCrsArray);
-	}
+	var previousCrsArray;
+	var url = "http://localhost:3337/previousCourses.json";
+	var request = new XMLHttpRequest();
+	request.onreadystatechange = function() {
+		if (this.readyState == 4 && this.status == 200) {
+			previousCrsArray = JSON.parse(request.responseText);
+		}
+	};
+	request.open("GET", url, false);
+	request.send();
+
 	return previousCrsArray; 
 }
 
@@ -36,7 +47,7 @@ function init() {
 	var previousCrsArray = getPreviousCrsArray();
 	for(i = 0; i < previousCrsArray.length; i++) {
 		var key = previousCrsArray[i].key;
-		var value = JSON.parse(localStorage[key]);
+		var value = previousCrsArray[i]; 
 		addPreviousCourseToDOM(key, value);
 	}
 }

@@ -2,9 +2,33 @@ window.onload = init;
 var stJohnsfirst = true;
 var marinefirst = true;
 var grenfellfirst = true;
+var eventsArray = [];
+
+function getJSON(filename) {
+	 var gottenArray;
+	 var url = "http://localhost:3337/" + filename;
+	 var request = new XMLHttpRequest();
+	 request.onreadystatechange = function() {
+		 if (this.readyState == 4 && this.status == 200) {
+			 gottenArray = request.responseText;
+		 }
+	 };
+	 request.open("GET", url, false);
+	 request.send();
+	 return gottenArray;
+	}
+
+function sendJSON(jsonarray, filename) {
+	var xmlhttp = new XMLHttpRequest();
+	var url = "http://localhost:3337/" + filename;
+	xmlhttp.open("POST", url);
+	xmlhttp.setRequestHeader("cache-control", "no-cache");
+	xmlhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+	xmlhttp.send(JSON.stringify(jsonarray));
+}
 
 function createEEvent() {
-	var eventsArray = getEventsArray();
+	var eventsArray = JSON.parse(getJSON("eventsArray.json"));
 	var currentDate = new Date();
 	var dayName = document.getElementById("day").value;
 	var eventName = document.getElementById("event").value.trim();
@@ -14,33 +38,32 @@ function createEEvent() {
 			if(eventsArray[i].day == dayName) {
 					dayExists = true;
 					eventsArray[i].event.push(eventName);
-					var key = eventsArray[i].key;
+					var key = eventsArray[i].day;
 					var eventObject = {
-							"key": key,
 							"day": dayName,
 							"event": eventsArray[i].event
 					}
-					localStorage.setItem(key, JSON.stringify(eventObject));
+					sendJSON(eventObject, "eventsArray.json");
 					addEventToDOM(key, eventsArray[i].event[eventsArray[i].event.length - 1]);
 					break;
 			}
 		}
 		if(!dayExists) {
-			var key = "day_" + currentDate.getTime();
+			var key = dayName;
 			var eventObject = {
-					"key": key,
 					"day": dayName,
 					"event": [eventName]
 			}
 			eventsArray.push(eventObject);
-			localStorage.setItem(key, JSON.stringify(eventObject));
+			var filename = "eventsArray.json";
+			sendJSON(eventsArray, filename);
 			addDayAndEventToDOM(key, eventObject);
 		}
 	}
 	else {
 		alert("Please enter an event name");
 	}
-	localStorage.setItem("eventsArray", JSON.stringify(eventsArray));
+	sendJSON(eventsArray, "eventsArray.json");
 }
 	
 function addDayAndEventToDOM(key, eventObject) {
@@ -67,33 +90,39 @@ function addEventToDOM(key, event) {
 	day.children[0].appendChild(eventLi);
 }
 
-function getEventsArray() {
-	var eventsArray = localStorage.getItem("eventsArray");
-	if(!eventsArray) {
-		eventsArray = [];
-		localStorage.setItem("eventsArray", JSON.stringify(eventsArray))
-	}
-	else {
-		eventsArray = JSON.parse(eventsArray);
-	}
-	return eventsArray;
-}
-
 function init() {
-	var eventsArray = getEventsArray();
+	var eventsArray = JSON.parse(getJSON("eventsArray.json"));
 	for(i = 0; i < eventsArray.length; i++) {
-		var key = eventsArray[i].key;
-		var value = JSON.parse(localStorage[key]);
+		var key = eventsArray[i].day;
+		var value = eventsArray[i];
 		addDayAndEventToDOM(key, value);
 	}
-	if(JSON.parse(localStorage.getItem("stjohns")).trim() != "") {
-		document.getElementById("stJohnsLink").innerHTML = JSON.parse(localStorage.getItem("stjohns"));
+	
+	var stjohnslink;
+	var stjohnsarray = JSON.parse(getJSON("stjohns.json"))
+	for(i = 0; i < stjohnsarray.length; i++) {
+		stjohnslink = stjohnsarray[i].name;
 	}
-	if(JSON.parse(localStorage.getItem("grenfell")).trim() != "") {
-		document.getElementById("grenfellLink").innerHTML = JSON.parse(localStorage.getItem("grenfell"));
+	
+	if(stjohnslink != "") {
+		document.getElementById("stJohnsLink").innerHTML = stjohnslink;
 	}
-	if(JSON.parse(localStorage.getItem("marine")).trim() != "") {
-		document.getElementById("marineLink").innerHTML = JSON.parse(localStorage.getItem("marine"));
+	
+	var grenfelllink;
+	var grenfellarray = JSON.parse(getJSON("grenfell.json"))
+	for(i = 0; i < grenfellarray.length; i++) {
+		grenfelllink = grenfellarray[i].name;
+	}
+	if(grenfelllink != "") {
+		document.getElementById("grenfellLink").innerHTML = grenfelllink;
+	}
+	var marinelink;
+	var marinearray = JSON.parse(getJSON("marine.json"))
+	for(i = 0; i < marinearray.length; i++) {
+		marinelink = marinearray[i].name;
+	}
+	if(marinelink != "") {
+		document.getElementById("marineLink").innerHTML = marinelink;
 	}
 }
 
@@ -108,8 +137,13 @@ function editStJohns(element) {
 		stJohnsfirst = true;
 		element.contentEditable = false;
 		document.getElementById("editStJohns").value = "Edit";
-		element.style.backgroundColor = "transparent"
-		localStorage.setItem("stjohns", JSON.stringify(element.innerHTML));
+		element.style.backgroundColor = "transparent";
+		var stjohnsarray = [];
+		var stjohnsobject = {
+				"name":element.innerHTML
+		};
+		stjohnsarray.push(stjohnsobject);
+		sendJSON(stjohnsarray,"stjohns.json");
 	}
 }
 
@@ -124,8 +158,13 @@ function editMarine(element) {
 		marinefirst = true;
 		element.contentEditable = false;
 		document.getElementById("editMarine").value = "Edit";
-		element.style.backgroundColor = "transparent"
-		localStorage.setItem("marine", JSON.stringify(element.innerHTML));
+		element.style.backgroundColor = "transparent";
+		var stjohnsarray = [];
+		var stjohnsobject = {
+				"name":element.innerHTML
+		};
+		stjohnsarray.push(stjohnsobject);
+		sendJSON(stjohnsarray,"marine.json");
 	}
 }
 
@@ -140,8 +179,13 @@ function editGrenfell(element) {
 		grenfellfirst = true;
 		element.contentEditable = false;
 		document.getElementById("editGrenfell").value = "Edit";
-		element.style.backgroundColor = "transparent"
-		localStorage.setItem("grenfell", JSON.stringify(element.innerHTML));
+		element.style.backgroundColor = "transparent";
+			var stjohnsarray = [];
+		var stjohnsobject = {
+				"name":element.innerHTML
+		};
+		stjohnsarray.push(stjohnsobject);
+		sendJSON(stjohnsarray,"grenfell.json");
 	}
 }
 

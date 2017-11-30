@@ -23,7 +23,6 @@ function createTable() {
 						"number": courseNum,
 						"room": courseArray[i].room
 				}
-				localStorage.setItem(key, JSON.stringify(courseObject));
 				addRoomToDOM(key, courseArray[i].room[courseArray[i].room.length - 1]);
 			}
 		}
@@ -36,13 +35,13 @@ function createTable() {
 					"room": [roomName]
 			}
 			courseArray.push(courseObject);
-			localStorage.setItem(key, JSON.stringify(courseObject));
+			sendJSON(courseArray); // replaced localstorage with sending to json
 		}
 	}
 	else {
 		alert("Please enter full information");
 	}
-	localStorage.setItem("course", JSON.stringify(courseArray));
+	sendJSON(courseArray); // replaced localstorage with sending to json
 	refreshTable(document.getElementById("cross"));
 }
 
@@ -87,7 +86,8 @@ function addCourseToDOM(key, courseObject) {
 }
 
 function refreshTable(table) {
-	localStorage.setItem("course", JSON.stringify(sortCourseArray()));
+    sendJSON(sortCourseArray()); // Replaced setting in localstorage to send json
+
 	tableChildren = table.children;
 	table.innerHTML = initTableHTML;
 	init();
@@ -138,47 +138,53 @@ function updateRoomDropDown() {
 }
 
 function getCourseArray() {
-	
-	var courseArray = localStorage.getItem("course");
-	if(!courseArray) {
-		courseArray = [];
-		localStorage.setItem("course", JSON.stringify(courseArray));
-	}
-	else {
-		courseArray = JSON.parse(courseArray);
-	}
+	var courseArray;
+	var url = "http://localhost:3337/coursesArray.json";
+	var request = new XMLHttpRequest();
+    request.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+                courseArray = JSON.parse(request.responseText);
+            }
+        };
+    request.open("GET", url, false);
+    request.send();
 	return courseArray;          
 }
 
 function getPreviousCrsArray() {
-	var previousCrsArray = localStorage.getItem("previous");
-	if(!previousCrsArray) {
-		previousCrsArray = [];
-		localStorage.setItem("course", JSON.stringify(previousCrsArray));
-	}
-	else {
-		previousCrsArray = JSON.parse(previousCrsArray);
-	}
+    var previousCrsArray;
+    var url = "http://localhost:3337/previousCourses.json";  /* Changed getting array from localstorage to XML request  */
+    var request = new XMLHttpRequest();
+    request.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+                previousCrsArray = JSON.parse(request.responseText);
+            }
+        };
+    request.open("GET", url, false);
+    request.send();
 	return previousCrsArray; 
 }
 
 function sortCourseArray() {
 	var courseArray = getCourseArray();
+	alert(courseArray);
     courseArray.sort(function(a,b) {
     	var textA = a.name.toUpperCase();
     	var textB = b.name.toUpperCase();
     	return (textA < textB) ? 1 : (textA > textB) ? -1 : 0;
     });
-    localStorage.setItem("course", JSON.stringify(courseArray));
+    sendJSON(courseArray); // Changed from localstorage to send JSON
+   
     return getCourseArray();
 }
   
 function init() {
 	initTableHTML = document.getElementById("cross").innerHTML;
     var courseArray = sortCourseArray();
+    alert(courseArray);
 	for(i = 0; i < courseArray.length; i++) {
 		var key = courseArray[i].key;
-		var value = JSON.parse(localStorage[key]);
+		var value = courseArray[i]; // Not sure what to change here 
 		addCourseToDOM(key, value);
 	}
 	updateNumberDropDown();
@@ -200,12 +206,10 @@ function deleteRow(object){
 	};
 	objectRemoved.key = key;
 	previousCrsArray.push(objectRemoved);
-	localStorage.setItem("previous", JSON.stringify(previousCrsArray));
-	localStorage.setItem(objectRemoved.key, JSON.stringify(objectRemoved));
+	sendJSONPrevious(previousCrsArray);
 	
 	courseArray.splice(objectIndexOf(courseArray, object), 1);
-	localStorage.setItem("course", JSON.stringify(courseArray));
-	localStorage.removeItem(object.key);
+	sendJSON(courseArray); // Changed from localstorage to sendJSON
 	var row = document.getElementById(object.key);
 	row.parentNode.removeChild(row);
 	updateCourseDropDown();
@@ -221,26 +225,35 @@ function objectIndexOf(myArray, object) {
 }
 
 function sendToStudent() {
-	var registerArray = getregisterArray();
+	var registerArray = getCourseArray2();
 	var course = {
 		    name: document.getElementById("courseDropDown").value,
 		    number: document.getElementById("numbers").value,
 		    room: document.getElementById("rooms").value
 		    };
 	
-	registerArray.push(course);
-	localStorage.setItem("register", JSON.stringify(registerArray));
+    registerArray.push(course);
+    sendJSON(registerArray); // Changed from localstorage to send JSON 
+	
 }
 
-function getregisterArray() {
-	var registerArray = localStorage.getItem("register");
-	if(!registerArray) {
-		registerArray = [];
-		localStorage.setItem("register", JSON.stringify(registerArray));
-	}
-	else {
-		registerArray = JSON.parse(registerArray);
-	}
-	return registerArray; 
+function sendJSON(jsonarray) {
+	var xmlhttp = new XMLHttpRequest();
+	xmlhttp.open("POST", "http://localhost:3337/coursesArray.json");
+	xmlhttp.setRequestHeader("cache-control", "no-cache");
+	xmlhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+	xmlhttp.send(JSON.stringify(jsonarray));
 }
+
+function sendJSONPrevious(jsonarray) {
+	var xmlhttp = new XMLHttpRequest();
+	xmlhttp.open("POST", "http://localhost:3337/previousCourses.json");
+	xmlhttp.setRequestHeader("cache-control", "no-cache");
+	xmlhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+	xmlhttp.send(JSON.stringify(jsonarray));
+}
+
+
   
+  
+
