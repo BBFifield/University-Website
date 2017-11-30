@@ -139,7 +139,7 @@ function updateRoomDropDown() {
 
 function getCourseArray() {
 	var courseArray;
-	var url = "http://localhost:3337/coursesArray.json";
+	var url = "http://sc-7.cs.mun.ca/coursesArray.json";
 	var request = new XMLHttpRequest();
     request.onreadystatechange = function() {
             if (this.readyState == 4 && this.status == 200) {
@@ -153,7 +153,7 @@ function getCourseArray() {
 
 function getPreviousCrsArray() {
     var previousCrsArray;
-    var url = "http://localhost:3337/previousCourses.json";  /* Changed getting array from localstorage to XML request  */
+    var url = "http://sc-7.cs.mun.ca/previousCourses.json";  /* Changed getting array from localstorage to XML request  */
     var request = new XMLHttpRequest();
     request.onreadystatechange = function() {
             if (this.readyState == 4 && this.status == 200) {
@@ -237,7 +237,7 @@ function sendToStudent() {
 
 function sendJSON(jsonarray) {
 	var xmlhttp = new XMLHttpRequest();
-	xmlhttp.open("POST", "http://localhost:3337/coursesArray.json");
+	xmlhttp.open("POST", "http://sc-7.cs.mun.ca/coursesArray.json");
 	xmlhttp.setRequestHeader("cache-control", "no-cache");
 	xmlhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
 	xmlhttp.send(JSON.stringify(jsonarray));
@@ -245,7 +245,7 @@ function sendJSON(jsonarray) {
 
 function sendJSONPrevious(jsonarray) {
 	var xmlhttp = new XMLHttpRequest();
-	xmlhttp.open("POST", "http://localhost:3337/previousCourses.json");
+	xmlhttp.open("POST", "http://sc-7.cs.mun.ca/previousCourses.json");
 	xmlhttp.setRequestHeader("cache-control", "no-cache");
 	xmlhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
 	xmlhttp.send(JSON.stringify(jsonarray));

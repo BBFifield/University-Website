@@ -2,7 +2,7 @@ var courseCheck;
 var table = document.getElementById("enrolled");
 var tableHTML = document.getElementById("enrolled").innerHTML;
 var headerHTML = document.getElementById("titleRow").innerHTML;
-var server = "http://localhost:3337/registerArray.json";
+var server = "http://sc-7.cs.mun.ca/registerArray.json";
 
 window.onload = init2("Student1");
 
@@ -110,7 +110,7 @@ function getRegisterArray(studentArray, student) {
  
  function getCourseArray2() {
 	    var courseArray;
-	    var url = "http://localhost:3337/coursesArray.json";
+	    var url = "http://sc-7.cs.mun.ca/coursesArray.json";
 	    var request = new XMLHttpRequest();
 	    request.onreadystatechange = function() {
 	        if (this.readyState == 4 && this.status == 200) {

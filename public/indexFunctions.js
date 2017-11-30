@@ -6,7 +6,7 @@ var eventsArray = [];
 
 function getJSON(filename) {
 	 var gottenArray;
-	 var url = "http://localhost:3337/" + filename;
+	 var url = "http://sc-7.cs.mun.ca/" + filename;
 	 var request = new XMLHttpRequest();
 	 request.onreadystatechange = function() {
 		 if (this.readyState == 4 && this.status == 200) {
@@ -20,7 +20,7 @@ function getJSON(filename) {
 
 function sendJSON(jsonarray, filename) {
 	var xmlhttp = new XMLHttpRequest();
-	var url = "http://localhost:3337/" + filename;
+	var url = "http://sc-7.cs.mun.ca/" + filename;
 	xmlhttp.open("POST", url);
 	xmlhttp.setRequestHeader("cache-control", "no-cache");
 	xmlhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");

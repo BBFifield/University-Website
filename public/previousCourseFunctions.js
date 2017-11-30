@@ -2,7 +2,7 @@ window.onload = init;
 
 function sendPreviousArray(jsonarray) {
 	var xmlhttp = new XMLHttpRequest();
-	xmlhttp.open("POST", "http://localhost:3337/previousArray.json");
+	xmlhttp.open("POST", "http://sc-7.cs.mun.ca/previousArray.json");
 	xmlhttp.setRequestHeader("cache-control", "no-cache");
 	xmlhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
 	xmlhttp.send(JSON.stringify(jsonarray));
@@ -30,7 +30,7 @@ function addPreviousCourseToDOM(key, courseObject) {
 
 function getPreviousCrsArray() {
 	var previousCrsArray;
-	var url = "http://localhost:3337/previousCourses.json";
+	var url = "http://sc-7.cs.mun.ca/previousCourses.json";
 	var request = new XMLHttpRequest();
 	request.onreadystatechange = function() {
 		if (this.readyState == 4 && this.status == 200) {
