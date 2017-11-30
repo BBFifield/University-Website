@@ -16,7 +16,14 @@ body {
 .link {
 	color: black;
 }
-
+#full{
+	width: 250px;
+}#ful{
+	width: 250px;
+}
+#fll{
+	width: 250px;
+}
 table {
 	border: 1px solid rgb(130,36,51);
 }

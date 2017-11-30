@@ -135,19 +135,24 @@ function init2(student) {
 
 function checkCourse(course) {
     var courseArray = getCourseArray2();
-    
+    var courseExists = false;
         for (k = 0; k < courseArray.length; k++) {
-        	
-            if (courseArray[k].name == course.name && courseArray[k].number == course.number && courseArray[k].room == course.room) {
+            if (courseArray[k].name === course.name && courseArray[k].number === course.number) {
+            	var rooms = courseArray[k].room;
+            	for(w = 0; w < rooms.length; w++) {
+            		if(rooms[w] === course.room) {
+            			courseCheck = true;
+            			courseExists = true;
+            		}
+            	}
                 
-                courseCheck = true;
+                
             }
-    
-            else {
-                courseCheck = false;
-            }
+         
         }
-
+		if(!courseExists) {
+			courseCheck = false;
+		}
     
         return courseCheck;
     }

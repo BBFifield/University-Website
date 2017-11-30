@@ -1,1 +1,1 @@
-[{"name":"Student1","courses":[{"name":"COMP","number":"3716","room":"EN1051"}]},{"name":"Student2","courses":[]},{"name":"Student3","courses":[]},{"name":"Student4","courses":[]},{"name":"Student5","courses":[]}]
+[{"name":"Student1","courses":[{"name":"COMP","number":"3716","room":"EN1051"},{"name":"ART","number":"1000","room":"ARTS1000"}]},{"name":"Student2","courses":[]},{"name":"Student3","courses":[]},{"name":"Student4","courses":[{"name":"Y","number":"Y","room":"Y"}]},{"name":"Student5","courses":[{"name":"Y","number":"Y","room":"Y"}]}]

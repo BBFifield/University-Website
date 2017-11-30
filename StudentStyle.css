@@ -21,11 +21,28 @@ h1.title {
 	margin: 0px;
 }
 
+#courseDropDown {
+	
+	width: 120px;
+}
+#rooms{
+	width: 120px;
+	
+}
+#numbers{
+	width: 120px;
+	
+}
 img.logo {
     float: left;
 }
 
-
+#mySelect{
+	
+	padding: 20px;
+	margin-left: 10px;
+	margin-top: 40px;
+}
 
 th, td, tr {
     padding: 30px;
@@ -34,4 +51,5 @@ th, td, tr {
 
 #registerBox {
     text-align: center;
+    padding: 20px;
 }
