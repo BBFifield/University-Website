@@ -86,7 +86,8 @@ function addCourseToDOM(key, courseObject) {
 }
 
 function refreshTable(table) {
-    sendJSON(sortCourseArray()); // Replaced setting in localstorage to send json
+	var sortedArray = sortCourseArray();
+    sendJSON(sortedArray); // Replaced setting in localstorage to send json
 
 	tableChildren = table.children;
 	table.innerHTML = initTableHTML;
@@ -173,8 +174,7 @@ function sortCourseArray() {
     	return (textA < textB) ? 1 : (textA > textB) ? -1 : 0;
     });
     sendJSON(courseArray); // Changed from localstorage to send JSON
-   
-    return getCourseArray();
+    return courseArray;
 }
   
 function init() {
