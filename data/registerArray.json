@@ -1,1 +1,1 @@
-[{"name":"Student1","courses":[{"name":"t","number":"t","room":"t"},{"name":"g","number":"g","room":"g"}]},{"name":"Student2","courses":[]},{"name":"Student3","courses":[]},{"name":"Student4","courses":[]},{"name":"Student5","courses":[]}]
+[{"name":"Student1","courses":[]},{"name":"Student2","courses":[]},{"name":"Student3","courses":[]},{"name":"Student4","courses":[]},{"name":"Student5","courses":[]}]
